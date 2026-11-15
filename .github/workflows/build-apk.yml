@@ -40,20 +40,12 @@ jobs:
               if perm not in s:
                   s = s.replace('<application', '<uses-permission android:name="' + perm + '"/>\n    <application', 1)
                   changed = True
-          admob_meta = '<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-9808430389913183~1382833928"/>'
-          if 'com.google.android.gms.ads.APPLICATION_ID' not in s:
-              s = s.replace('</application>', '    ' + admob_meta + '\n    </application>', 1)
-              changed = True
           impeller_meta = '<meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="false"/>'
           if 'EnableImpeller' not in s:
               s = s.replace('</application>', '    ' + impeller_meta + '\n    </application>', 1)
               changed = True
           if 'xmlns:tools' not in s:
               s = s.replace('<manifest ', '<manifest xmlns:tools="http://schemas.android.com/tools" ', 1)
-              changed = True
-          ads_provider_off = '<provider android:name="com.google.android.gms.ads.MobileAdsInitProvider" android:authorities="com.graballbyanas.app.mobileadsinitprovider" tools:node="remove"/>'
-          if 'MobileAdsInitProvider' not in s:
-              s = s.replace('</application>', '    ' + ads_provider_off + '\n    </application>', 1)
               changed = True
           if changed:
               p.write_text(s)
