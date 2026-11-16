@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [ main ]
+    paths: [ 'graball-flutter.zip', '.github/workflows/build-apk.yml' ]
 jobs:
   build:
     permissions:
