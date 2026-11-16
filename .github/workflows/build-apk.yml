@@ -59,9 +59,9 @@ jobs:
               gradle = app_dir / 'build.gradle'
           s = gradle.read_text()
           if 'com.example.graball' in s:
-              s = s.replace('com.example.graball', 'com.graballbyanas.app')
+              s = s.replace('com.example.graball', 'com.graballbyanas.downloader')
               gradle.write_text(s)
-              print('gradle: namespace/applicationId -> com.graballbyanas.app in', gradle)
+              print('gradle: namespace/applicationId -> com.graballbyanas.downloader in', gradle)
           else:
               print('gradle: old applicationId string not found (already rebranded?) in', gradle)
           main = None
@@ -70,8 +70,8 @@ jobs:
               break
           if main is not None:
               code = main.read_text()
-              code = re.sub(r'(?m)^package\s+\S+', 'package com.graballbyanas.app', code, count=1)
-              dest = app_dir / 'src/main/kotlin/com/graballbyanas/app/MainActivity.kt'
+              code = re.sub(r'(?m)^package\s+\S+', 'package com.graballbyanas.downloader', code, count=1)
+              dest = app_dir / 'src/main/kotlin/com/graballbyanas/downloader/MainActivity.kt'
               dest.parent.mkdir(parents=True, exist_ok=True)
               if main.resolve() != dest.resolve():
                   dest.write_text(code)
