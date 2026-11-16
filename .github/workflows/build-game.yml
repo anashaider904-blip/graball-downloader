@@ -61,8 +61,8 @@ jobs:
           if not gradle.exists():
               gradle = app_dir / 'build.gradle'
           s = gradle.read_text()
-          if 'com.example.graball' in s:
-              s = s.replace('com.example.graball', 'com.puzzleworldbyanas.app')
+          if 'com.example.puzzle_world' in s:
+              s = s.replace('com.example.puzzle_world', 'com.puzzleworldbyanas.app')
               gradle.write_text(s)
               print('gradle: namespace/applicationId -> com.puzzleworldbyanas.app in', gradle)
           else:
