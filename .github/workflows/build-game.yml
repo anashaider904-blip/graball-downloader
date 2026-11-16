@@ -37,7 +37,7 @@ jobs:
           s = p.read_text()
           perms = [
               'android.permission.INTERNET',
-                                      ]
+                                            ]
           changed = False
           for perm in perms:
               if perm not in s:
@@ -49,6 +49,9 @@ jobs:
               changed = True
           if 'xmlns:tools' not in s:
               s = s.replace('<manifest ', '<manifest xmlns:tools="http://schemas.android.com/tools" ', 1)
+              changed = True
+          if 'android:label="puzzle_world"' in s:
+              s = s.replace('android:label="puzzle_world"', 'android:label="Block Blast"', 1)
               changed = True
           if changed:
               p.write_text(s)
