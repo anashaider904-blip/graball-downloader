@@ -171,3 +171,12 @@ jobs:
         with:
           name: graball-apk
           path: project/build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          APK=$(find . -name app-release.apk | head -1)
+          echo "Found APK: $APK"
+          cp "$APK" GrabAll.apk
+          gh release create store-v1.0 GrabAll.apk --title "GrabAll — Store Edition v1.0" --notes "GrabAll store edition: a separate app (package com.graballbyanas.downloader) with the new icon and a clean, store-ready build." || gh release upload store-v1.0 GrabAll.apk --clobber
